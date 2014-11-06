@@ -137,6 +137,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         position top
+        font xft:Inconsolata Medium 10
         status_command $HOME/.conky/conky-i3bar.sh
 }
 
@@ -147,9 +148,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10
 # CUSTOM KEY BINDINGS
 bindsym $mod+Shift+f exec thunar
 bindsym $mod+Shift+w exec google-chrome
-bindsym $mod+Shift+s exec subl
+bindsym $mod+Shift+s exec sublime_text
 bindsym $mod+End exec xfce4-screenshooter
 bindsym $mod+Shift+x exec python $HOME/.i3/i3-exit.py
+
+# SET FONTS
+font xft:Inconsolata Medium 11
+
+# BORDER OPTIONS
+for_window [class="^Google-chrome$"] border none
 
 # NAME WORKSPACES
 # set $WORKSPACE_1 1:main
@@ -165,6 +172,7 @@ bindsym $mod+Shift+x exec python $HOME/.i3/i3-exit.py
 exec --no-startup-id nitrogen --restore
 
 #AUTOSTART
+exec --no-startup-od dropboxd
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xscreensaver -no-splash
 #exec_always --no-startup-id i3-msg 'workspace 1: main'
