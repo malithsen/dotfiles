@@ -1,4 +1,6 @@
 set nocompatible              " be iMproved, required
+set backspace=2
+set cursorline
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -31,7 +33,8 @@ Plugin 'git://git.wincent.com/command-t.git'
 " ...
 Plugin 'scrooloose/nerdtree'
 Plugin 'malithsen/trello-vim'
-
+Plugin 'airblade/vim-gitgutter'
+"
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on

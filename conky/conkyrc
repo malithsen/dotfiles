@@ -52,9 +52,6 @@ TEXT
             ${endif}
     },
     {
-        "full_text": "Vol ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} "
-    },
-    {
         "full_text": " ${time %a %d/%m/%y} ${time %H:%M:%S} ",
         "color": ${if_match ${time %u}>5}"\#00CC00"${else}"\#CC0000"${endif}
     }
