@@ -26,37 +26,25 @@ class i3_exit:
         self.disable_buttons()
         self.status.set_label("Suspending, please standby...")
         os.system("xscreensaver-command -l")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Suspend")
+        os.system("systemctl suspend")
         gtk.main_quit()
 
     def hibernate_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Hibernating, please standby...")
         os.system("xscreensaver-command -l")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Hibernate")
+        os.system("systemctl hibernate")
         gtk.main_quit()
 
     def reboot_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Rebooting, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Restart")
+        os.system("systemctl reboot")
 
     def shutdown_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Shutting down, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Stop")
+        os.system("systemctl poweroff")
 
     def create_window(self):
         self.window = gtk.Window()
