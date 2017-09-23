@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME=""
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -15,7 +15,7 @@ ZSH_THEME="af-magic"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -42,11 +42,15 @@ ZSH_THEME="af-magic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git virtualenv sublime)
 
+# lazy loading
+lazy_source () {
+    eval "$1 () { [ -f $2 ] && source $2 && $1 \$@ }"
+}
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/malithsen/mongodb/mongodb-linux-i686-2.4.10/bin:/home/malithsen/scripts
-
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/home/malithsen/mongodb/mongodb-linux-i686-2.4.10/bin:/home/malithsen/.gem/ruby/2.4.0/bin
 ### Cordova dependencies
 export ANDROID_HOME="/home/malithsen/projects/java/adt/sdk"
 export ANT_HOME="/home/malithsen/projects/java/adt/apache-ant"
@@ -62,11 +66,11 @@ export PATH="/home/malithsen/bin:$PATH"
 export GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n"
 export RUN_ENVIRONMENT='dev'
 
-source /home/malithsen/downloads/Tools/z-master/z.sh
+source /home/malithsen/bin/z.sh
 
-if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
-fi
+#if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+#    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+#fi
 
 ### Aliases ###
 
@@ -77,9 +81,26 @@ alias idea=/home/malithsen/projects/java/intellij-ultimate/bin/idea.sh
 alias subl=/home/malithsen/bin/sublime_text
 alias score="curl http://static.cricinfo.com/rss/livescores.xml >/dev/null 2>&1 | grep -m 1 'Sri Lanka' | grep -o -P '(?<=\>).*(?=\<)'"
 
-#todo.txt cli
-alias t=/home/malithsen/projects/shell/todo.txt-cli/todo.sh
-source /home/malithsen/projects/shell/todo.txt-cli/todo_completion
-
 ### RANGER CONFIGS ###
 export EDITOR='vim'
+
+# nvm
+export NVM_DIR="/home/malithsen/.nvm"
+NVM_SOURCE=$NVM_DIR/nvm.sh
+lazy_source nvm $NVM_SOURCE
+
+# virtualenv and virtualenvwrapper
+export WORKON_HOME=/home/malithsen/.virtualenvs
+source /usr/bin/virtualenvwrapper_lazy.sh
+
+#go appengine
+export PATH="/home/malithsen/bin/go_appengine:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Initialise prompt system
+autoload -Uz promptinit
+promptinit
+prompt pure
+
