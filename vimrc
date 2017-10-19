@@ -4,12 +4,13 @@ set cursorline
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "let path = '~/some/path/here'
 "call vundle#rc(path)
 
+let mapleader = " "
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 Plugin 'Lokaltog/vim-powerline'
@@ -25,7 +26,6 @@ Plugin 'tpope/vim-rails.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " scripts from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
-Plugin 'FuzzyFinder'
 " scripts not on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -34,6 +34,9 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'scrooloose/nerdtree'
 Plugin 'malithsen/trello-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-commentary'
+
 "
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
@@ -51,9 +54,15 @@ filetype plugin indent on     " required
 
 map <F2> :NERDTreeToggle<CR>
 syntax on
-set nu
+set rnu
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+" Use fuzzy-finder
+set rtp+=~/.fzf
 
 " Always show statusline
 set laststatus=2
@@ -71,6 +80,8 @@ nmap s <Plug>(easymotion-s)
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
 nmap s <Plug>(easymotion-s2)
+nmap ; :buffers<CR>
+nmap <Leader>t :Files<CR>
 
 " Turn on case sensitive feature
 let g:EasyMotion_smartcase = 1
@@ -78,6 +89,12 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+" Buffer mappings
+map <Leader>n :bn<cr>
+map <Leader>p :bp<cr>
+map <Leader>d :bd<cr>
+
 
 " Color scheme
 colorscheme molokai
