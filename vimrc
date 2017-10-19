@@ -59,6 +59,9 @@ set rnu
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
+set ignorecase
+set hlsearch
+
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " Use fuzzy-finder
