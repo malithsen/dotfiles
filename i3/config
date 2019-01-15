@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # font for window titles. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -25,8 +26,12 @@ bindsym $mod+Return exec xfce4-terminal --working-directory "`xcwd`"
 # kill focused window
 bindsym $mod+c kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start program launcher (dmenu/rofi)
+# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run
+
+# show ssh list
+bindsym $mod+Shift+s exec rofi -show ssh
 
 # i3 uses jkl; instead of hjkl -- fix that
 bindsym $mod+h focus left
@@ -161,7 +166,6 @@ bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 # CUSTOM KEY BINDINGS
 bindsym $mod+Shift+w exec google-chrome-stable
-bindsym $mod+Shift+s exec sublime_text
 bindsym $mod+Print exec xfce4-screenshooter
 bindsym $mod+Shift+x exec python2 $HOME/.i3/i3-exit.py
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'Rename workspace: '
@@ -169,6 +173,7 @@ bindsym $mod+t border normal
 bindsym $mod+y border 1pixel
 bindsym $mod+u border none
 bindsym $mod+m move workspace to output left
+bindsym $alt+Control+h exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # FILE MANAGER
 bindsym $mod+Shift+f exec thunar
@@ -187,7 +192,7 @@ new_window none
 exec --no-startup-id nitrogen --restore
 
 #AUTOSTART
-exec --no-startup-id clipit
+exec --no-startup-id greenclip daemon
 exec --no-startup-id pnmixer
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id compton -CGb
