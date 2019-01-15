@@ -31,7 +31,7 @@ bindsym $mod+c kill
 bindsym $mod+d exec rofi -show run
 
 # show ssh list
-bindsym $mod+Shift+s exec rofi -show ssh
+bindsym $mod+Shift+s exec sublime_text
 
 # i3 uses jkl; instead of hjkl -- fix that
 bindsym $mod+h focus left
