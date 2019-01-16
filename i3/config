@@ -20,8 +20,9 @@ font xft:Inconsolata Medium 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal --working-directory "`xcwd`"
+# bindsym $mod+Return exec xfce4-terminal --working-directory "`xcwd`"
 #bindsym $mod+Return exec hyper
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+c kill
@@ -174,6 +175,7 @@ bindsym $mod+y border 1pixel
 bindsym $mod+u border none
 bindsym $mod+m move workspace to output left
 bindsym $alt+Control+h exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $alt+Control+l exec i3lock-fancy -p -t "Hello Malith"
 
 # FILE MANAGER
 bindsym $mod+Shift+f exec thunar
@@ -185,7 +187,7 @@ exec gtrayicon --tooltip="Hide/show file manager." --activate='i3-msg [class="Th
 # BORDER OPTIONS
 #for_window [class="^Google-chrome-stable$"] border none
 for_window [class="^Xfce4-terminal$"] border pixel 1
-for_window [class="^Termite$"] border pixel 1
+# for_window [class="^Termite$"] border pixel 1
 new_window none
 
 # SET WALLPAPER
@@ -196,7 +198,7 @@ exec --no-startup-id greenclip daemon
 exec --no-startup-id pnmixer
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id compton -CGb
-exec --no-startup-id xss-lock -- i3lock-fancy
+exec --no-startup-id xss-lock -- i3lock-fancy -p -t "Hello Malith"
 exec --no-startup-id nm-applet
 exec --no-startup-id xmodmap ~/.xmodmap-malithsen
 
