@@ -3,7 +3,7 @@ local on_attach = require("plugins.utils").on_attach
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- See https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
 local ignored_ts_diagnostic_codes = {
@@ -60,7 +60,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -161,3 +161,5 @@ require("lspconfig").intelephense.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
+require'lspconfig'.pyright.setup{}

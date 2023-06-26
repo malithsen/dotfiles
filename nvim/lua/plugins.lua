@@ -250,6 +250,11 @@ return require("packer").startup(function(use, use_rocks)
 		end,
 	})
 
+	use({
+		"github/copilot.vim",
+		config = [[require("plugins.copilot")]],
+	})
+
 	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
